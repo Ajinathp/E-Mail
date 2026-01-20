@@ -2,12 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/Ajinathp/E-Mail.git'
-            }
-        }
-
         stage('Run Email Script') {
             steps {
                 bat '''
@@ -18,4 +12,3 @@ pipeline {
         }
     }
 }
-
