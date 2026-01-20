@@ -10,7 +10,7 @@ pipeline {
 
         stage('Run Script') {
             steps {
-                bat 'python main.py'
+                bat 'email.py'
             }
         }
     }
