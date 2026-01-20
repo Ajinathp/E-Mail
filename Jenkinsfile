@@ -6,7 +6,7 @@ pipeline {
             steps {
                 bat '''
                 python -m pip install --upgrade pip
-                python email_2.py
+                bat send_email.py
                 '''
             }
         }
