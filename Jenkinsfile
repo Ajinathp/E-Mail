@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        SMTP_USER = credentials('smtp-user')   // Jenkins credential ID
-        SMTP_PASS = credentials('smtp-pass')   // Jenkins credential ID
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -13,11 +8,13 @@ pipeline {
             }
         }
 
-        stage('Run Script') {
+        stage('Run Email Script') {
             steps {
                 bat '''
+                echo SMTP_USER=%SMTP_USER%
+                echo SMTP_PASS=%SMTP_PASS%
                 python -m pip install --upgrade pip
-                python email_2.py
+                python email.py
                 '''
             }
         }
