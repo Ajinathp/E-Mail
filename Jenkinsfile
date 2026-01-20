@@ -1,25 +1,24 @@
 pipeline {
     agent any
 
+    environment {
+        SMTP_USER = credentials('smtp-user')   // Jenkins credential ID
+        SMTP_PASS = credentials('smtp-pass')   // Jenkins credential ID
+    }
+
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Ajinathp/E-Mail.git'
-            }
-        }
-
-        stage('Install Dependencies') {
-            steps {
-                bat 'python -m pip install --upgrade pip'
-                bat 'pip install pywin32'
-                // If you have requirements.txt in repo:
-                // bat 'pip install -r requirements.txt'
+                git 'https://github.com/Ajinathp/E-Mail.git'
             }
         }
 
         stage('Run Script') {
             steps {
-                bat 'python email.py'
+                bat '''
+                python -m pip install --upgrade pip
+                python email.py
+                '''
             }
         }
     }
