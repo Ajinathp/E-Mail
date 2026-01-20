@@ -43,7 +43,8 @@ Shivani
 
     with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
         server.starttls()
-        server.login(ajinathp@outlook.com, Adhi@123#)
+        //#server.login(SENDER_EMAIL, SENDER_PASS)
+        server.login("ajinathp@outlook.com", "Adhi@123#")
         server.send_message(msg)
 
     print("Email sent successfully.")
