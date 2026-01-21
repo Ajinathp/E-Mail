@@ -3,11 +3,9 @@ pipeline {
 
     stages {
         stage('Run Outlook Script') {
-            steps {
-                bat '''
-                python email.py
-                '''
-            }
+            stage('Run Email Script') 
+            { steps { bat 'python smtp_mailer.py' }
+             }
         }
     }
 }
